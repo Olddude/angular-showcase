@@ -1,4 +1,5 @@
 <p-dropdown [options]="menu"
-            [(ngModel)]="selectedItem"
+            [ngModel]="selectedItem"
+            (ngModelChanged)="onSelectedItemChanged($event)"
             optionLabel="label"
             optionValue="value"></p-dropdown>

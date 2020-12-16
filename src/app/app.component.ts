@@ -11,4 +11,10 @@ export class AppComponent {
 
   someEnum = SomeEnum;
   someOtherEnum = SomeOtherEnum;
+
+
+  reportSelectedItemChanged(event: any) {
+    console.log(event);
+  }
+
 }
