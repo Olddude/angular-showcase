@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SomeEnum, SomeOtherEnum } from '.';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-showcase';
+
+  someEnum = SomeEnum;
+  someOtherEnum = SomeOtherEnum;
 }
