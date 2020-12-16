@@ -1,2 +1,4 @@
-<app-somedropdown [someEnum]="someOtherEnum"></app-somedropdown>
-<app-somedropdown [someEnum]="someEnum"></app-somedropdown>
+<app-somedropdown [someEnum]="someOtherEnum"
+                  (selectedItemChanged)="reportSelectedItemChanged($event)"></app-somedropdown>
+<app-somedropdown [someEnum]="someEnum"
+                  (selectedItemChanged)="reportSelectedItemChanged($event)"></app-somedropdown>
