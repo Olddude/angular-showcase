@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges
+} from '@angular/core';
 import { DropdownItemsService } from './dropdown-items.service';
 
 @Component({
@@ -25,7 +32,7 @@ export class SomedropdownComponent implements OnChanges {
     this.menu = this.service.getMenu(changes.someEnum.currentValue);
   }
 
-  onSelectedItemChanged(event: any) {
+  onSelectedItemChanged(event: any): void {
     this.selectedItemChanged.emit(event);
   }
 
