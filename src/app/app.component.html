@@ -1,8 +1,7 @@
 <ul class="vertical-flex">
-  <li *ngFor="let case of cases" class="vertical-flex">
+  <li *ngFor="let case of cases" class="horizontal-flex">
     <label class="disabled">{{case.name}}</label>
     <app-somedropdown [data]="case.options"
-                      [(ngModel)]="case.selected"
-                      [disabled]="true"></app-somedropdown>
+                      [(ngModel)]="case.selected"></app-somedropdown>
   </li>
 </ul>

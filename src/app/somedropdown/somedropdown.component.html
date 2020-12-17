@@ -4,10 +4,4 @@
             (ngModelChange)="onModelChange($event)"
             optionLabel="label"
             optionValue="value">
-  <ng-template pTemplate="selectedItem">
-    <div>{{value | json}}</div>
-  </ng-template>
-  <ng-template let-item pTemplate="item">
-    <div>{{item | json}}</div>
-  </ng-template>
 </p-dropdown>
