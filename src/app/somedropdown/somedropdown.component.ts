@@ -1,39 +1,77 @@
 import {
   Component,
-  EventEmitter,
   Input,
-  OnChanges,
-  Output,
-  SimpleChanges
+  Optional,
+  Self,
 } from '@angular/core';
-import { DropdownItemsService } from './dropdown-items.service';
+import { ControlValueAccessor, NgControl } from '@angular/forms';
+import { SomedropdownService } from './somedropdown.service';
 
 @Component({
   selector: 'app-somedropdown',
   templateUrl: './somedropdown.component.html',
   styleUrls: ['./somedropdown.component.scss']
 })
-export class SomedropdownComponent implements OnChanges {
+export class SomedropdownComponent implements ControlValueAccessor {
 
-  @Input()
-  someEnum: any;
+  // tslint:disable-next-line: variable-name
+  private _data: any;
 
-  @Output()
-  selectedItemChanged: EventEmitter<any> = new EventEmitter();
-
-  menu: any[] = [];
-  selectedItem: any;
-
-  constructor(
-    private readonly service: DropdownItemsService
-  ) { }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.menu = this.service.getMenu(changes.someEnum.currentValue);
+  @Input() set data(value: any) {
+    this._data = value;
+    this.options = this.service.buildMenu(this._data);
   }
 
-  onSelectedItemChanged(event: any): void {
-    this.selectedItemChanged.emit(event);
+  get data(): any {
+    return this._data;
+  }
+
+  // tslint:disable-next-line: variable-name
+  private _disabled = false;
+
+  @Input() set disabled(value: boolean) {
+    this._disabled = value;
+  }
+
+  get disabled(): boolean {
+    return this._disabled;
+  }
+
+  constructor(
+    @Self()
+    @Optional()
+    private readonly ngControl: NgControl,
+    private readonly service: SomedropdownService
+  ) {
+    if (this.ngControl) {
+      this.ngControl.valueAccessor = this;
+    }
+  }
+
+  value: any = '';
+  options: any[] = [];
+
+  writeValue(value: any): void {
+    this.value = value;
+  }
+
+  registerOnChange(fn: any): void {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: any): void {
+    this.onTouched = fn;
+  }
+
+  private onChange(event: any): void {
+    this.writeValue(event);
+  }
+
+  private onTouched(event: any): void {
+  }
+
+  onModelChange(event: any): void {
+    this.onChange(event);
   }
 
 }

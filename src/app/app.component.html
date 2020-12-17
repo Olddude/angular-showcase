@@ -1,4 +1,8 @@
-<app-somedropdown [someEnum]="someOtherEnum"
-                  (selectedItemChanged)="reportSelectedItemChanged($event)"></app-somedropdown>
-<app-somedropdown [someEnum]="someEnum"
-                  (selectedItemChanged)="reportSelectedItemChanged($event)"></app-somedropdown>
+<ul class="vertical-flex">
+  <li *ngFor="let case of cases" class="vertical-flex">
+    <label class="disabled">{{case.name}}</label>
+    <app-somedropdown [data]="case.options"
+                      [(ngModel)]="case.selected"
+                      [disabled]="true"></app-somedropdown>
+  </li>
+</ul>

@@ -3,3 +3,60 @@
 @import '../node_modules/primeicons/primeicons.css';
 @import '../node_modules/primeng/resources/themes/saga-blue/theme.css';
 @import '../node_modules/primeng/resources/primeng.min.css';
+
+$color: #333;
+$padding: .25rem;
+$margin: .5rem;
+$fontFamily: Arial, Helvetica, sans-serif;
+$fontSize: 14px;
+$lineHeight: 28px;
+
+
+html, body {
+  color: $color;
+  font-size: $fontSize;
+  line-height: $lineHeight;
+  font-family: $fontFamily;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+}
+
+ul {
+  list-style: none;
+  padding-inline-start: 0;
+}
+
+.vertical-flex {
+  padding: $padding;
+  display: flex;
+  flex-direction: column;
+  *:not(:last-child) {
+    margin-bottom: $margin;
+  }
+}
+
+.horizontal-flex {
+  padding: $padding;
+  display: flex;
+  flex-direction: row;
+  *:not(:last-child) {
+    margin-right: $margin;
+  }
+}
+
+.p-component {
+  color: $color;
+}
+
+.p-dropdown {
+  min-width: 100px;
+}

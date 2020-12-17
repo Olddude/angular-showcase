@@ -1,5 +1,29 @@
 import { Component } from '@angular/core';
-import { SomeEnum, SomeOtherEnum } from '.';
+
+enum Cars {
+  Honda = 'Honda',
+  BMW = 'BMW',
+  MercedesBenz = 'MercedesBenz'
+}
+
+enum Students {
+  Mark = 'Mark',
+  Jenny = 'Jenny',
+  Richard = 'Richard'
+}
+
+enum LogLevels {
+  Trace,
+  Debug,
+  Info,
+  Warning,
+  Error
+}
+
+enum Environment {
+  SYSTEMINFO = 'WINDOWS_NT',
+  NODE_ENV = 'DEVELOPMENT'
+}
 
 @Component({
   selector: 'app-root',
@@ -8,13 +32,10 @@ import { SomeEnum, SomeOtherEnum } from '.';
 })
 export class AppComponent {
   title = 'angular-showcase';
-
-  someEnum = SomeEnum;
-  someOtherEnum = SomeOtherEnum;
-
-
-  reportSelectedItemChanged(event: any) {
-    console.log(event);
-  }
-
+  cases = [
+    { name: 'Cars', options: Cars, selected: Cars.BMW },
+    { name: 'Students', options: Students, selected: Students.Richard },
+    { name: 'LogLevels', options: LogLevels, selected: LogLevels.Info },
+    { name: 'Environment', options: Environment, selected: Environment.NODE_ENV },
+  ];
 }
