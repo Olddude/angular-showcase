@@ -18,6 +18,28 @@ task('config', (cb) => {
   cb(0)
 })
 
+task('deploy-client', (cb) => {
+  const clientDeployment = execa.command('git subtree push --prefix client client master', {
+    cwd: config.paths.root,
+    stdio: 'inherit'
+  })
+  clientDeployment.on('exit', code => {
+    cb(code)
+  })
+})
+
+task('deploy-server', (cb) => {
+  const serverDeployment = execa.command('git subtree push --prefix server server master', {
+    cwd: config.paths.root,
+    stdio: 'inherit'
+  })
+  serverDeployment.on('exit', code => {
+    cb(code)
+  })
+})
+
+task('deploy', parallel('deploy-server', 'deploy-client'))
+
 task('run-client', (cb) => {
   const clientRun = execa.command('node index.js', {
     cwd: config.paths.client,
@@ -128,7 +150,10 @@ exports['lint'] = 'lint'
 exports['test'] = 'test'
 exports['e2e'] = 'e2e'
 exports['build'] = 'build'
-exports['run-server'] = 'run-server',
+exports['deploy-server'] = 'deploy-server'
+exports['deploy-client'] = 'deploy-client'
+exports['deploy'] = 'deploy'
+exports['run-server'] = 'run-server'
 exports['run-client'] = 'run-client'
 exports['run'] = 'run'
 exports.default = series(
@@ -136,5 +161,6 @@ exports.default = series(
   'lint',
   'test',
   'e2e',
-  'build'
+  'build',
+  'deploy'
 )

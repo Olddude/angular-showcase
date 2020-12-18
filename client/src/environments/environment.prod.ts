@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  api: 'https://angular-showcase-server.herokuapp.com/v1'
 };
