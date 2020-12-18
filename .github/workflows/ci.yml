@@ -10,11 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./
+        working-directory: ./ci
     steps:
       - name: Checkout Repo
         uses: actions/checkout@master
       - name: Install Dependencies
         run: npm install
       - name: Run CI
-        run: npm run build
+        run: npm run start
