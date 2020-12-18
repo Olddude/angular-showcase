@@ -1,13 +1,16 @@
 {
   "name": "angular-showcase",
   "version": "0.0.0",
+  "main": "index.js",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "serve": "ng serve",
+    "start": "node index.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "heroku-postbuild": "ng build --prod"
   },
   "private": true,
   "dependencies": {
