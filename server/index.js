@@ -8,7 +8,9 @@ const api = express()
 api.use(logger('dev'))
 api.use(bodyParser.json())
 api.use(cors({
-  origin: '*',
+  origin: process.env.NODE_ENV === 'production'
+    ? 'https://angular-showcase.herokuapp.com'
+    : 'http://localhost:4200',
   optionsSuccessStatus: 200
 }))
 
