@@ -2,11 +2,11 @@ name: CI
 on:
   push:
     branches:
-      - development
+      - master
 
 jobs:
   ci:
-    name: CI
+    name: RELEASE
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -16,5 +16,5 @@ jobs:
         uses: actions/checkout@master
       - name: Install Dependencies
         run: npm install
-      - name: Run CI
+      - name: Run Build
         run: npm run start
