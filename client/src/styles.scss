@@ -39,31 +39,28 @@ ul {
 }
 
 .vertical-flex-list {
-  border: 1px solid yellow;
   padding: $padding;
   display: flex;
   flex-direction: column;
   align-items: center;
   .vertical-flex-list-item:not(:last-child) {
-    border: 1px solid orange;
     margin-bottom: $margin;
   }
 }
 
 .horizontal-flex-list {
-  border: 1px solid green;
   padding: $padding;
   display: flex;
   flex-direction: row;
   align-items: center;
   .horizontal-flex-list-item:not(:last-child) {
-    border: 1px solid blue;
     margin-right: $margin;
   }
 }
 
 .p-component {
   color: $color;
+  font-family: $fontSize;
 }
 
 .p-dropdown {
