@@ -1,17 +1,20 @@
-import { routerReducer } from '@ngrx/router-store';
+import { routerReducer, RouterReducerState, SerializedRouterStateSnapshot } from '@ngrx/router-store';
 import {
   ActionReducerMap,
   MetaReducer
 } from '@ngrx/store';
 import { environment } from '../environments/environment';
+import { homeFeatureKey, HomeState, homeReducer } from './home/home.reducer';
 
 
 export interface AppState {
-  router?: any;
+  readonly router?: RouterReducerState<SerializedRouterStateSnapshot>;
+  readonly [homeFeatureKey]: HomeState;
 }
 
 export const reducers: ActionReducerMap<AppState> = {
-  router: routerReducer
+  router: routerReducer,
+  home: homeReducer
 };
 
 

@@ -1,0 +1,14 @@
+<header>
+  <h1>{{title$ | async}}</h1>
+</header>
+<main>
+  <ul class="vertical-flex-list">
+    <li *ngFor="let case of (cases$ | async)" class="vertical-flex-list-item horizontal-flex-list">
+      <label class="horizontal-flex-list-item">{{case.name}}</label>
+      <app-somedropdown class="horizontal-flex-list-item"
+                        [data]="case.options"
+                        [ngModel]="case.selected"
+                        (ngModelChange)="updateCase($event, case)"></app-somedropdown>
+    </li>
+  </ul>
+</main>

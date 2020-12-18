@@ -11,6 +11,9 @@ $fontFamily: Arial, Helvetica, sans-serif;
 $fontSize: 14px;
 $lineHeight: 28px;
 
+h1, h2, h3, h4, h5, h6, p {
+  color: $color;
+}
 
 html, body {
   color: $color;
@@ -35,20 +38,26 @@ ul {
   padding-inline-start: 0;
 }
 
-.vertical-flex {
+.vertical-flex-list {
+  border: 1px solid yellow;
   padding: $padding;
   display: flex;
   flex-direction: column;
-  *:not(:last-child) {
+  align-items: center;
+  .vertical-flex-list-item:not(:last-child) {
+    border: 1px solid orange;
     margin-bottom: $margin;
   }
 }
 
-.horizontal-flex {
+.horizontal-flex-list {
+  border: 1px solid green;
   padding: $padding;
   display: flex;
   flex-direction: row;
-  *:not(:last-child) {
+  align-items: center;
+  .horizontal-flex-list-item:not(:last-child) {
+    border: 1px solid blue;
     margin-right: $margin;
   }
 }

@@ -1,0 +1,13 @@
+:host {
+  border: 1px solid blue;
+  width: inherit;
+  height: inherit;
+  display: flex;
+  flex-direction: column;
+  main {
+    align-self: center;
+    max-width: 800px;
+    width: 100%;
+    height: 100%;
+  }
+}
