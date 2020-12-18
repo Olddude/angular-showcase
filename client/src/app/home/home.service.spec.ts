@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 
 import { HomeService } from './home.service';
 
@@ -6,7 +7,11 @@ describe('HomeService', () => {
   let service: HomeService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [
+        provideMockStore()
+      ]
+    });
     service = TestBed.inject(HomeService);
   });
 

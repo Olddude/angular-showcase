@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
 
 import { HomeComponent } from './home.component';
+import { HomeService } from './home.service';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -8,7 +10,17 @@ describe('HomeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HomeComponent ]
+      declarations: [ HomeComponent ],
+      providers: [
+        {
+          provide: HomeService,
+          useFactory: () => ({
+            title: () => of(''),
+            cases: () => of([]),
+            updateCase: () => {}
+          })
+        }
+      ]
     })
     .compileComponents();
   });
