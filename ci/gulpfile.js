@@ -38,7 +38,7 @@ task('deploy-server', (cb) => {
   })
 })
 
-task('deploy', parallel('deploy-server', 'deploy-client'))
+task('deploy', series('deploy-server', 'deploy-client'))
 
 task('run-client', (cb) => {
   const clientRun = execa.command('node index.js', {
