@@ -6,7 +6,7 @@ on:
 
 jobs:
   ci:
-    name: RELEASE
+    name: CI
     runs-on: ubuntu-latest
     defaults:
       run:

@@ -168,6 +168,7 @@ exports['run-server'] = 'run-server'
 exports['run-client'] = 'run-client'
 exports['run'] = 'run'
 exports.default = series(
+  'environment',
   'install',
   'lint',
   'test',
