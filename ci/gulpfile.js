@@ -3,14 +3,14 @@ const path = require('path')
 const { task, series, parallel } = require('gulp')
 
 const config = {
+  environment: process.env.NODE_ENV,
+  cwd: process.cwd(),
   paths: {
     root: path.resolve(__dirname, '..'),
     ci: path.resolve(__dirname, '.'),
     client: path.resolve(__dirname, '../client'),
     server: path.resolve(__dirname, '../server')
-  },
-  cwd: process.cwd(),
-  environment: process.env.NODE_ENV
+  }
 }
 
 task('config', (cb) => {
@@ -18,49 +18,15 @@ task('config', (cb) => {
   cb(0)
 })
 
-task('deploy-client', (cb) => {
-  const clientDeployment = execa.command('git subtree push --prefix client client master', {
-    cwd: config.paths.root,
-    stdio: 'inherit'
-  })
-  clientDeployment.on('exit', code => {
-    cb(code)
-  })
-})
-
-task('deploy-server', (cb) => {
-  const serverDeployment = execa.command('git subtree push --prefix server server master', {
-    cwd: config.paths.root,
-    stdio: 'inherit'
-  })
-  serverDeployment.on('exit', code => {
-    cb(code)
-  })
-})
-
-task('deploy', series('deploy-server', 'deploy-client'))
-
-task('run-client', (cb) => {
-  const clientRun = execa.command('node index.js', {
+task('clean', (cb) => {
+	const cleanRun = execa.command('npx rimraf ./dist', {
     cwd: config.paths.client,
     stdio: 'inherit'
   })
-  clientRun.on('exit', code => {
+  cleanRun.on('exit', code => {
     cb(code)
   })
 })
-
-task('run-server', (cb) => {
-  const serverRun = execa.command('node index.js', {
-    cwd: config.paths.server,
-    stdio: 'inherit'
-  })
-  serverRun.on('exit', code => {
-    cb(code)
-  })
-})
-
-task('run', parallel('run-server', 'run-client'))
 
 task('install-client', (cb) => {
   const installClientRun = execa.command('npm install', {
@@ -142,7 +108,52 @@ task('build', (cb) => {
   })
 })
 
+task('deploy-client', (cb) => {
+  const clientDeployment = execa.command('git subtree push --prefix client client master', {
+    cwd: config.paths.root,
+    stdio: 'inherit'
+  })
+  clientDeployment.on('exit', code => {
+    cb(code)
+  })
+})
+
+task('deploy-server', (cb) => {
+  const serverDeployment = execa.command('git subtree push --prefix server server master', {
+    cwd: config.paths.root,
+    stdio: 'inherit'
+  })
+  serverDeployment.on('exit', code => {
+    cb(code)
+  })
+})
+
+task('deploy', series('deploy-server', 'deploy-client'))
+
+task('run-client', (cb) => {
+  const clientRun = execa.command('node index.js', {
+    cwd: config.paths.client,
+    stdio: 'inherit'
+  })
+  clientRun.on('exit', code => {
+    cb(code)
+  })
+})
+
+task('run-server', (cb) => {
+  const serverRun = execa.command('node index.js', {
+    cwd: config.paths.server,
+    stdio: 'inherit'
+  })
+  serverRun.on('exit', code => {
+    cb(code)
+  })
+})
+
+task('run', series('build', parallel('run-server', 'run-client')))
+
 exports['config'] = 'config'
+exports['clean'] = 'clean'
 exports['install-server'] = 'install-server'
 exports['install-client'] = 'install-client'
 exports['install'] = 'install'

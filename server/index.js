@@ -19,5 +19,5 @@ api.use('/v1', require('./src/routes/v1'))
 const port = process.env.PORT || 8080
 
 api.listen(port, () => {
-  console.log(`processary-server is listening on ${port}`)
+  console.log(`angular-showcase-server is listening on ${port}`)
 })

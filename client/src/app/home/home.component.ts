@@ -16,8 +16,8 @@ export class HomeComponent {
   title$ = this.service.title();
   cases$ = this.service.cases();
 
-  updateCase(selected: any, c: Case): void {
-    this.service.updateCase({ ...c, selected });
+  updateCase(target: Case, selected: any): void {
+    this.service.updateCase(target, selected);
   }
 
 }

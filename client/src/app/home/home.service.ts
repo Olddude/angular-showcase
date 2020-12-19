@@ -20,8 +20,15 @@ export class HomeService {
     return this.store.select<Case[]>(state => state.home.cases);
   }
 
-  updateCase(c: Case): void {
-    this.store.dispatch(updateCase({ payload: c }));
+  updateCase(target: Case, selectedValue: any): void {
+    this.store.dispatch(
+      updateCase({
+        payload: {
+          ...target,
+          selected: selectedValue
+        }
+      })
+    );
   }
 
 }

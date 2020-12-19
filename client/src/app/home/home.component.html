@@ -8,7 +8,7 @@
       <app-somedropdown class="horizontal-flex-list-item"
                         [data]="case.options"
                         [ngModel]="case.selected"
-                        (ngModelChange)="updateCase($event, case)"></app-somedropdown>
+                        (ngModelChange)="updateCase(case, $event)"></app-somedropdown>
     </li>
   </ul>
 </main>
